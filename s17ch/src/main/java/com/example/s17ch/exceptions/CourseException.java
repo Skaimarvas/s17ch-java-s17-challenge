@@ -1,4 +1,11 @@
 package com.example.s17ch.exceptions;
 
-public class CourseException {
+import org.springframework.http.HttpStatus;
+
+public class CourseException extends RuntimeException {
+    private HttpStatus status;
+    public CourseException(String message, HttpStatus status){
+         super(message);
+         this.status = status;
+    }
 }

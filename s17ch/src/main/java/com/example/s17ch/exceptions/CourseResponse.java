@@ -13,6 +13,4 @@ public class CourseResponse {
     private int status;
     private String message;
     private LocalDateTime createdAt;
-
-
 }
