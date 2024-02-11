@@ -3,6 +3,7 @@ package com.example.s17ch.controller;
 import com.example.s17ch.entity.HighCourseGpa;
 import com.example.s17ch.entity.LowCourseGpa;
 import com.example.s17ch.entity.MediumCourseGpa;
+import com.example.s17ch.exceptions.CourseValidation;
 import com.example.s17ch.model.Course;
 import com.example.s17ch.model.CourseGpa;
 import com.example.s17ch.model.Grade;
@@ -62,8 +63,8 @@ public class CourseController {
 
     @PostMapping
     public void addCourse(@RequestBody Course course){
-
-
+        CourseValidation.isCourseCredentialsValid(course);
+        CourseValidation.isCourseExist(courses,course.getCourseId(),false);
         courses.add(course);
         /*
         int totalGpa = 0;
@@ -78,6 +79,13 @@ public class CourseController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(message);
 
          */
+    }
+
+    @PostMapping("/{id}")
+    public void updateCourse(@PathVariable int id, @RequestBody Course course){
+        CourseValidation.isIdValid(id);
+
+
     }
 
 }
